@@ -2,13 +2,19 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Noto Sans', sans-serif;
+  /* Remova font-family daqui se quiser que body sobrescreva,
+     ou mantenha se for para elementos sem font-family específica */
+  font-family: 'Noto Sans', sans-serif; /* Mantenha Noto Sans como fallback geral */
 }
 
 body {
   background-color: #fff;
   color: #333;
+  /* NOVA LINHA: Aplica Space Grotesk como a fonte principal */
+  font-family: 'Space Grotesk', sans-serif;
 }
+
+/* O restante do seu CSS continua o mesmo */
 
 /* Header */
 .header {
@@ -32,19 +38,28 @@ body {
   text-align: center;
 }
 
-.header h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 42px;
-  font-weight: 700;
+/* Alterações para o nome e cargo */
+.header-name-job {
+  display: flex;
+  flex-direction: column; /* ALTERADO: Força a coluna por padrão */
+  align-items: center;    /* Centraliza o texto dentro da coluna */
+  gap: 0px;               /* Remove o gap para ficarem mais juntos */
   margin-bottom: 8px;
 }
 
-.header h2 {
+.header-name-job h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 42px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.header-name-job h2 {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 24px;
   font-weight: 500;
   color: #6c757d;
-  margin-bottom: 12px;
+  margin-top: 5px; /* Adiciona um pequeno espaço entre h1 e h2 */
 }
 
 .header p {
@@ -52,7 +67,9 @@ body {
   color: #6c757d;
   line-height: 1.6;
   font-weight: 400;
+  margin-top: 12px;
 }
+
 
 /* Projects */
 .projects {
@@ -75,6 +92,7 @@ body {
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .project:hover {
@@ -89,6 +107,7 @@ body {
   background-color: transparent;
   padding: 0;
   box-shadow: none;
+  min-width: 120px;
 }
 
 .project-info {
@@ -103,10 +122,12 @@ body {
   color: #6c757d;
   font-size: 15px;
   font-weight: 500;
-  font-family: 'Space Grotesk', sans-serif;
+  /* Remover font-family daqui, será herdado do body */
+  /* font-family: 'Space Grotesk', sans-serif; */
 }
 
 .project-info h3 {
+  /* Remover font-family daqui, será herdado do body */
   font-family: 'Space Grotesk', sans-serif;
   font-size: 24px;
   font-weight: 700;
@@ -121,18 +142,19 @@ body {
 .project-info a {
   margin-top: 10px;
   display: inline-block;
-  background-color: #e0e0e0; /* cinza claro */
+  background-color: #e0e0e0;
   color: #333333;
   text-decoration: none;
   padding: 10px 20px;
   border-radius: 8px;
   font-weight: 600;
-  font-family: 'Noto Sans', sans-serif;
+  /* Remover font-family daqui, será herdado do body */
+  /* font-family: 'Noto Sans', sans-serif; */
   transition: background-color 0.3s, transform 0.3s;
 }
 
 .project-info a:hover {
-  background-color: #4a4a4a; /* cinza escuro */
+  background-color: #4a4a4a;
   color: #ffffff;
   transform: scale(1.05);
 }
@@ -143,7 +165,8 @@ body {
   color: #6c757d;
   padding: 20px;
   margin-top: 50px;
-  font-family: 'Noto Sans', sans-serif;
+  /* Remover font-family daqui, será herdado do body */
+  /* font-family: 'Noto Sans', sans-serif; */
   font-weight: 400;
 }
 
@@ -163,6 +186,9 @@ body {
 .social-icons a img:hover {
   opacity: 1;
 }
+
+/* O media query para (max-width: 768px) pode ser simplificado */
+/* porque a coluna já será o padrão */
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
@@ -175,12 +201,19 @@ body {
     height: 120px;
   }
 
-  .header h1 {
+  .header-name-job {
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
+  }
+
+  .header-name-job h1 {
     font-size: 32px;
   }
 
-  .header h2 {
+  .header-name-job h2 {
     font-size: 20px;
+    margin-top: 4px;
   }
 
   .header p {
@@ -192,15 +225,25 @@ body {
   }
 
   .project {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
     padding: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .project-img {
-    width: 100%;
-    max-width: 250px;
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    min-width: unset;
+    margin-right: 15px;
+    margin-bottom: 10px;
+  }
+
+  .project-info {
+    flex: 1;
+    min-width: 180px;
   }
 
   .project-info h3 {
@@ -219,5 +262,20 @@ body {
   .footer {
     font-size: 14px;
     padding: 20px 10px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .project {
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+    align-items: center;
+  }
+
+  .project-img {
+    width: 120px;
+    height: 120px;
+    max-width: 120px;
   }
 }

@@ -110,9 +110,9 @@ body {
 .project-info {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  justify-content: space-between;
   flex: 1;
-  min-width: 250px;
+  min-width: 200px;
 }
 
 .project-number {
@@ -275,4 +275,11 @@ body {
     height: 120px;
     max-width: 120px;
   }
+}
+
+.project-links {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
